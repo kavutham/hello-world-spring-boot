@@ -24,6 +24,11 @@ jobs:
     - name: Build with Maven
       shell: cmd
       run: mvn -B package --file pom.xml
+    - name: copy artifacts to a folder
+      shell: cmd
+      run: |
+        mkdir jartarget
+        copy "/target/*"" "jartarget"
 
   Test:
     runs-on: self-hosted
