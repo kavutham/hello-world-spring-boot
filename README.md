@@ -27,7 +27,7 @@ Docker: Creates a docker image with base image thothbot/alpine-jre8, so docker m
 
 Deploy To ECS: Dummy stage just prints output
 
-Pipeline triggers on push of any commits to Master branch
+Pipeline triggers on push of any commits to Master branch.
 
 
 # Task 3:
