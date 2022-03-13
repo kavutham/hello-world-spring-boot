@@ -47,7 +47,6 @@ jobs:
     needs: [build, Test]
     env:
       REPO: ${{ secrets.DOCKER_REPO }}
-      GITSHA: ${{GITHUB_SHA::8}}
 
     steps:
       - uses: actions/checkout@v2
@@ -61,7 +60,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
       - name: Build Docker image
         shell: cmd
-        run: docker build -t %REPO%:latest -t %REPO%:%GITSHA% .
+        run: docker build -t %REPO%:latest .
       - name: Publish Docker image
         shell: cmd
         run: docker push %REPO%
@@ -79,4 +78,4 @@ jobs:
 
 
 
-#-t %REPO%:%GITSHA%
+#-t %REPO%:%GITSHA
