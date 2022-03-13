@@ -15,12 +15,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
+    #- name: Set up JDK 11
+     # uses: actions/setup-java@v2
+      #with:
+        #java-version: '11'
+        #distribution: 'temurin'
+        #cache: maven
     - name: Build with Maven
       shell: cmd
       run: mvn -B package --file pom.xml
@@ -31,12 +31,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
+    #- name: Set up JDK 11
+      #uses: actions/setup-java@v2
+      #with:
+        #java-version: '11'
+        #distribution: 'temurin'
+        #cache: maven
     - name: Test with Maven
       shell: cmd
       run: mvn test --file pom.xml
@@ -49,14 +49,24 @@ jobs:
       REPO: ${{ secrets.DOCKER_REPO }}
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          java-version: 11.0.4
+          java-version: '11'
+          distribution: 'temurin'
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
       - name: Build Docker image
         run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
       - name: Publish Docker image
         run: docker push $REPO
+  deploy:
+    name: Deploy to ECS
+    runs-on: self-hosted
+    needs: [build, Test, docker]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploying to ECS
+        run: echo Deployed to ECS Succesfully!
