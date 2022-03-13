@@ -61,7 +61,6 @@ jobs:
       - name: Build Docker image
         shell: cmd
         run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
-        docker build -t vkavu/titanium-assignment:latest -t vkavu/titanium-assignment:894542 .
       - name: Publish Docker image
         shell: cmd
         run: docker push $REPO
