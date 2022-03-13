@@ -30,3 +30,8 @@ Deploy To ECS: Dummy stage just prints output
 Pipeline triggers on push of any commits to Master
 
 
+# Task 3:
+
+To remove existing container and rerun with new image use the container-test.sh script. Can be exectued in linux machines. Pass the $container_name as argument along with  this script
+./container-test.sh container-name
+
