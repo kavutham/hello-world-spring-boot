@@ -29,6 +29,10 @@ jobs:
       run: |
         mkdir jartarget
         xcopy .\target\ .\jartarget
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: jartarget
 
   Test:
     runs-on: self-hosted
