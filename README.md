@@ -35,3 +35,9 @@ Pipeline triggers on push of any commits to Master
 To remove existing container and rerun with new image use the container-test.sh script. Can be exectued in linux machines. Pass the $container_name as argument along with  this script
 ./container-test.sh container-name
 
+# Task 4: 
+
+Added jib plugin directly to pom file. This plugin helps us to build docker image and push it to reponsitory without the need of dockerfile or daemon.
+Pre-Requiste: Need to authenticate docker login or cred-helper from the machine this commnad is running. 
+Run "mvn mvn compile jib:build"
+
