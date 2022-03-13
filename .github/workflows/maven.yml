@@ -28,7 +28,7 @@ jobs:
       shell: cmd
       run: |
         mkdir jartarget
-        copy "./target/*" "./jartarget"
+        xcopy .\target\ .\jartarget
 
   Test:
     runs-on: self-hosted
